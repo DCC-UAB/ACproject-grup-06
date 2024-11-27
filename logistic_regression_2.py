@@ -80,6 +80,6 @@ print(report)
 print("Matriu de confusió:")
 print(conf_matrix)
 
-# Cross-validation
+# Cross-validation --> Per a realitzar les diferents combinacions de dades train i test amb k-folds 
 scores = cross_val_score(model, X_train_tfidf, y_train, cv=5, scoring='accuracy')
 print(f"Mitjana d'exactitud amb cross-validation: {scores.mean() * 100:.2f}%")

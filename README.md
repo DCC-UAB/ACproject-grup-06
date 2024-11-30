@@ -31,4 +31,11 @@ Fitxer python per a executar el model de Logistic regression
 Estadistiques.py: 
 Fitxer per a analitzar diferents mètriques del Dataset
 
+Imates.png: 
+Imatges sobre les metriques i caracteristiques del Dataset
 
+Informe_Dataset.html:
+Fitxer html on es mostren les caracteristiques del Dataset
+
+Generar_informe_estadistiques.py: 
+Fitxer .py per a generar l'informe HTML del Dataset

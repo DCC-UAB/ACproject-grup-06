@@ -1,0 +1,8 @@
+Setmana 1:
+Provar apart del lema, stemming.
+Eliminar stopwords.
+Seguent setmana Alberts expliquen el codi.
+Visualitzar gràfiques provant amb els diferents paràmetres.
+Revisar dataset balancejat? com es el dataset? Llargada mitjana dels missatges?(desviació típica) documentació 
+Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. Codi python.
+80%train 20%test -> fer validació

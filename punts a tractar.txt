@@ -6,3 +6,6 @@ Visualitzar gràfiques provant amb els diferents paràmetres.
 Revisar dataset balancejat? com es el dataset? Llargada mitjana dels missatges?(desviació típica) documentació 
 Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. Codi python.
 80%train 20%test -> fer validació
+
+Idees: 
+Crear un fitxer de python que generi un altre dataset, on apliquem el "lematizer" o el "Stem", i traiem qualsevol funcio de clean text dels arxius .py i els models

@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 26 11:22:30 2024
-
-@author: mcasesf
-"""
-
 import pandas as pd
 import re
 from sklearn.model_selection import train_test_split, cross_val_score

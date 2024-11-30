@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 26 10:42:28 2024
-
-@author: mcasesf
-"""
-
 import pandas as pd
 import re
 from sklearn.model_selection import train_test_split

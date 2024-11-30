@@ -8,11 +8,8 @@ df = pd.read_csv('training.1600000.processed.noemoticon.csv', header=None, encod
 # Assigna noms a les columnes
 df.columns = ['Ranking', 'Timestamp', 'Date', 'Query_Type', 'Username', 'Tweet']
 
-# Filtra les files amb 'Ranking' 0 o 4
-df_filtered = df[df['Ranking'].isin([0, 4])]
-
 # Queda't només amb les columnes 'Ranking' i 'Tweet'
-df_cleaned = df_filtered[['Ranking', 'Tweet']]
+df_cleaned = df[['Ranking', 'Tweet']]
 
 # Guarda el nou dataset netejat
 df_cleaned.to_csv('netejat.csv', index=False)

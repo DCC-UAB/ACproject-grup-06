@@ -30,3 +30,5 @@ Fitxer python per a executar el model de Logistic regression
 
 Estadistiques.py: 
 Fitxer per a analitzar diferents mètriques del Dataset
+
+

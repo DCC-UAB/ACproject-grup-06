@@ -6,19 +6,8 @@ import seaborn as sns
 # Llegeix el dataset amb la codificació 'utf-8'
 df = pd.read_csv('netejat.csv', encoding='utf-8')
 
-# Funció per netejar el tweet (eliminar caràcters no desitjats com emojis o símbols)
-def clean_tweet(text):
-    # Eliminem tot el que no sigui lletres, números o espais
-    cleaned_text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
-    # Eliminem espais al principi i al final
-    cleaned_text = cleaned_text.strip()
-    return cleaned_text
-
-# Neteja els tweets i crea una nova columna 'Cleaned_Tweet'
-df['Cleaned_Tweet'] = df['Tweet'].apply(clean_tweet)
-
 # Estadístiques sobre la llargada dels tweets
-tweet_lengths = df['Cleaned_Tweet'].apply(len)
+tweet_lengths = df['Tweet'].apply(len)
 avg_length = tweet_lengths.mean()
 min_length = tweet_lengths.min()
 max_length = tweet_lengths.max()
@@ -31,8 +20,8 @@ print(f"Llargada màxima del tweet: {max_length} caràcters")
 print(f"Desviació típica de la llargada dels tweets: {std_length}")
 
 # Tweet més curt i més llarg
-shortest_tweet = df.loc[tweet_lengths.idxmin()]['Cleaned_Tweet']
-longest_tweet = df.loc[tweet_lengths.idxmax()]['Cleaned_Tweet']
+shortest_tweet = df.loc[tweet_lengths.idxmin()]['Tweet']
+longest_tweet = df.loc[tweet_lengths.idxmax()]['Tweet']
 
 print(f"Tweet més curt: {shortest_tweet}")
 print(f"Tweet més llarg: {longest_tweet}")

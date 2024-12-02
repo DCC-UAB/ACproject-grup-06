@@ -9,3 +9,4 @@ Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. C
 
 Idees: 
 Crear un fitxer de python que generi un altre dataset, on apliquem el "lematizer" o el "Stem", i traiem qualsevol funcio de clean text dels arxius .py i els models
+

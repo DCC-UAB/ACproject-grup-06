@@ -14,3 +14,4 @@ Hem vist que en les comparacions de lema i stem es millor escollir el que tingui
 -Crear dataset amb millor exactitud (lema, stem).
 -Comparar cada dataset amb cada model i obtenir exactitud i temps d'execució.
 -Dataset alfanumeric, stem, stem+stopwords.
+-Gràfica y=exactitud, x=num files

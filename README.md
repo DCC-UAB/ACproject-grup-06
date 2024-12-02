@@ -34,6 +34,24 @@ Fitxer per a analitzar diferents mètriques del Dataset
 Imates.png: 
 Imatges sobre les metriques i caracteristiques del Dataset
 
+ComparacioLemadiversosStemLRDatsetOG.py:
+Fitxer python on comparem el lemmatizer i diversos tipus de stemming amb regressió amb el data set original
+
+ComparacioLemadiversosStemdiversestecniquesNetajat.py:
+Fitxer python on comparem el lemmatizer i diversos tipus de stemming amb regressió amb el data set netejat
+
+ComparacioLemaPorterStemLRDatasetNet.py:
+Fitxer python on comparem el lemmatizer i stemming amb regressió amb el dataset netejat
+
+ComparacioLemaPorterStemLRDatasetOG.py:
+Fitxer python on comparem el lemmatizer i stemming amb regressió amb el dataset original
+
+ComparacioLemaDiversosStemNB.py:
+Fitxer python on comparem amb el dataset net diversos tecniques de stemming i lemmatizer amb NaiveBayes
+
+proves lema i stemming.docx:
+Documentació de les proves realitzades entre lema i stemming
+
 Informe_Dataset.html:
 Fitxer html on es mostren les caracteristiques del Dataset
 

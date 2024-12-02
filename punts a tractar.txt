@@ -9,4 +9,8 @@ Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. C
 
 Idees: 
 Crear un fitxer de python que generi un altre dataset, on apliquem el "lematizer" o el "Stem", i traiem qualsevol funcio de clean text dels arxius .py i els models
-
+Reunió 02/12/2024:
+Hem vist que en les comparacions de lema i stem es millor escollir el que tingui millor exactitud, ja que el procés aquest només el farem un cop i el temps passa a ser secundari. 
+-Crear dataset amb millor exactitud (lema, stem).
+-Comparar cada dataset amb cada model i obtenir exactitud i temps d'execució.
+-Dataset alfanumeric, stem, stem+stopwords.

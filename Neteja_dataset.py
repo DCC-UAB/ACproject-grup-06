@@ -27,3 +27,5 @@ df_cleaned.to_csv('netejat.csv', index=False)
 
 # Mostra les primeres files per comprovar
 print(df_cleaned.head())
+
+#Prova 

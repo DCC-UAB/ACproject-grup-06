@@ -54,3 +54,58 @@ El dataset ha de contenir sis columnes, on la primera (‘target’) representa 
   5. Sortir
 
 ---
+
+## 4. Models de Machine Learning
+
+| Model                    | Descripció                                        |
+|--------------------------|----------------------------------------------------|
+| **Regressió Logística**  | Model lineal robust per a classificació.         |
+| **Naive Bayes**          | Simple i eficient per a dades text.               |
+| **Random Forest**        | Bosc aleatori d'arbres de decisió.                |
+| **SVM**                  | Classificador amb kernel lineal.                  |
+
+---
+
+## 5. Com executar
+
+1. Executa el fitxer Python:
+```bash
+python <nom_del_fitxer>.py
+```
+2. Segueix les instruccions del terminal per seleccionar el model.
+3. Els resultats d'exactitud i informe de classificació es mostraran al terminal.
+
+---
+
+## 6. Notes
+- Assegura't que el dataset estigui en el format correcte i que el fitxer existeixi a la ubicació especificada.
+- Per millorar el rendiment dels models, pots ajustar els hiperparàmetres com `ngram_range`, `max_features`, o `n_estimators`.
+
+---
+
+## 7. Exemple de sortida
+
+```
+Selecciona un model de Machine Learning:
+1. Regressió Logística
+2. Naive Bayes
+3. Random Forest
+4. SVM
+5. Sortir
+Introdueix el número de la teva opció: 1
+Entrenant el model LogisticRegression...
+Predint...
+Avaluant el model...
+Exactitud del model: 85.23%
+Informe de classificació:
+              precision    recall  f1-score   support
+
+           0       0.86      0.84      0.85      2000
+           1       0.85      0.87      0.86      2000
+
+    accuracy                           0.85      4000
+   macro avg       0.85      0.85      0.85      4000
+weighted avg       0.85      0.85      0.85      4000
+```
+
+---

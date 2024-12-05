@@ -4,7 +4,7 @@ Created on Thu Dec  5 10:11:54 2024
 
 @author: mcasesf
 """
-
+##CODI PRINCIPAL ON S'EXECUTEN TOTS ELS MODELS DE ML EN UN SOL MAIN, CAL MODIFICAR PER IMPORTAR UN DATASET JA NETEJAT
 import pandas as pd
 import re
 from sklearn.model_selection import train_test_split
@@ -116,5 +116,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-#C:\Users\mcasesf\Documents\ModelML\training.1600000.processed.noemoticon.csv

@@ -4,7 +4,9 @@ Created on Thu Dec  5 10:11:54 2024
 
 @author: mcasesf
 """
-##CODI PRINCIPAL ON S'EXECUTEN TOTS ELS MODELS DE ML EN UN SOL MAIN, CAL MODIFICAR PER IMPORTAR UN DATASET JA NETEJAT
+##CODI PRINCIPAL ON S'EXECUTEN TOTS ELS MODELS DE ML EN UN SOL MAIN, CAL MODIFICAR PER IMPORTAR UN DATASET JA NETEJAT.
+##Implementacions futures --> Posar un input per demanar quin CSV importar.
+
 import pandas as pd
 import re
 from sklearn.model_selection import train_test_split

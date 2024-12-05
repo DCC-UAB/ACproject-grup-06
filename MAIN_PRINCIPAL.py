@@ -26,7 +26,7 @@ lemmatizer = WordNetLemmatizer()
 def carregar_dades():
     print("Carregant el dataset...")
     file_path = 'netejat.csv'
-    data = pd.read_csv(file_path, encoding='latin-1', header=None)
+    data = pd.read_csv(file_path, encoding='latin-1')
     """
     print("Netejant el text...")
     def clean_text(text):

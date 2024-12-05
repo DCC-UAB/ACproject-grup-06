@@ -25,14 +25,9 @@ lemmatizer = WordNetLemmatizer()
 # Funció per carregar i preprocessar les dades
 def carregar_dades():
     print("Carregant el dataset...")
-    file_path = r'C:\Users\mcasesf\Documents\ModelML\training.1600000.processed.noemoticon.csv'
-    columns = [0, 1, 2, 3, 4, 5]
-    data = pd.read_csv(file_path, encoding='latin-1', header=None, names=columns)
-
-    print("Seleccionant columnes rellevants...")
-    data = data[[0, 5]]
-    data.columns = ['target', 'text']
-
+    file_path = 'netejat.csv'
+    data = pd.read_csv(file_path, encoding='latin-1', header=None)
+    """
     print("Netejant el text...")
     def clean_text(text):
         text = re.sub(r'http\S+|www.\S+', '', text)  # Eliminar enllaços
@@ -45,10 +40,12 @@ def carregar_dades():
         return text
 
     data['text'] = data['text'].apply(clean_text)
-    
+    """
+    #El Dataset ja està netejat, però no he esborrat aquesta funció per si de cas
+    #evidentmnet no cal tornar a netejar el Dataset
     print("Dividint les dades...")
-    X = data['text']
-    y = data['target']
+    X = data['Text']
+    y = data['Target']
     return train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
 # Funció per vectoritzar les dades

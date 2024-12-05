@@ -1,0 +1,56 @@
+# README - Processament de Text i Models de Machine Learning
+
+Aquest projecte implementa un pipeline complet per a l'anàlisi de text utilitzant models de Machine Learning. El codi inclou funcionalitats per carregar dades, preprocessar text, vectoritzar-lo, entrenar models i avaluar-los.
+
+---
+
+## 1. Dependències
+Abans d'executar el codi, assegura't d'instal·lar les llibreries necessàries:
+```bash
+pip install pandas scikit-learn nltk
+```
+
+---
+
+## 2. Fitxer d'entrada
+El codi assumeix que el dataset original es troba al fitxer:
+```
+C:\Users\mcasesf\Documents\ModelML\training.1600000.processed.noemoticon.csv
+```
+El dataset ha de contenir sis columnes, on la primera (‘target’) representa l'etiqueta i la sisena (‘text’) el text.
+
+---
+
+## 3. Descripció de les funcions
+
+### carregar_dades()
+- Carrega el dataset des d'un fitxer CSV.
+- Selecciona les columnes rellevants (‘target’ i ‘text’).
+- Preprocessa el text:
+  - Elimina enllaços, mencions, hashtags, puntuació i números.
+  - Converteix el text a minúscules.
+  - Aplica lematització.
+- Divideix les dades en entrenament i validació.
+
+### vectoritzar_dades(X_train, X_val)
+- Aplica la transformació TF-IDF al text:
+  - Utilitza fins a 100.000 característiques.
+  - Considera n-grams de longitud 1 a 4.
+  - Exclou termes molt rars o molt comuns.
+
+### executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
+- Entrena el model especificat amb les dades vectoritzades.
+- Prediu les etiquetes per al conjunt de validació.
+- Calcula i mostra:
+  - Exactitud del model.
+  - Informe de classificació (precisió, record, F1-score).
+
+### main()
+- Permet a l'usuari seleccionar i executar models entre:
+  1. Regressió Logística
+  2. Naive Bayes
+  3. Random Forest
+  4. SVM
+  5. Sortir
+
+---

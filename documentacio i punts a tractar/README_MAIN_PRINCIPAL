@@ -13,11 +13,7 @@ pip install pandas scikit-learn nltk
 ---
 
 ## 2. Fitxer d'entrada
-El codi assumeix que el dataset original es troba al fitxer:
-```
-C:\Users\mcasesf\Documents\ModelML\training.1600000.processed.noemoticon.csv
-```
-El dataset ha de contenir sis columnes, on la primera (‘target’) representa l'etiqueta i la sisena (‘text’) el text.
+El codi ens demanarà que posem nosaltres el nom del datatset que volem utilitzar en format .csv.
 
 ---
 
@@ -86,6 +82,13 @@ python <nom_del_fitxer>.py
 ## 7. Exemple de sortida
 
 ```
+Carregant dades i preprocessant...
+Introdueix el nom del fitxer CSV que vols utilitzar (amb extensió '.csv'):
+Nom del fitxer: netejat.csv
+Carregant el dataset...
+Dataset carregat correctament!
+Dividint les dades...
+Vectoritzant amb TF-IDF...
 Selecciona un model de Machine Learning:
 1. Regressió Logística
 2. Naive Bayes

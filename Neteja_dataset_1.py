@@ -1,11 +1,5 @@
 import pandas as pd
 import re
-from nltk.stem import WordNetLemmatizer
-import nltk
-
-# Descarregar recursos necessaris de nltk
-nltk.download('wordnet')
-lemmatizer = WordNetLemmatizer()
 
 # Carregar el dataset amb un encoding diferent (latin1)
 df = pd.read_csv('training.1600000.processed.noemoticon.csv', header=None, encoding='latin1')
@@ -30,8 +24,6 @@ def clean_text(text):
     text = re.sub(r'\d+', '', text)
     # Convertir a minúscules
     text = text.lower()
-    # Lemmatització de cada paraula
-    text = ' '.join([lemmatizer.lemmatize(word) for word in text.split()])
     return text
 
 # Neteja els tweets sobre la columna 'Text'
@@ -41,9 +33,7 @@ df['Text'] = df['Text'].apply(clean_text)
 df = df[df['Text'].str.strip() != '']
 
 # Guarda el nou dataset netejat
-df.to_csv('netejat.csv', index=False)
+df.to_csv('netejat_1.csv', index=False)
 
 # Mostra les primeres files per comprovar
 print(df.head())
-
-

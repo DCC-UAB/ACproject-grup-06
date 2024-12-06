@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Dec  5 10:11:54 2024
-
-@author: mcasesf
-"""
 ##CODI PRINCIPAL ON S'EXECUTEN TOTS ELS MODELS DE ML EN UN SOL MAIN, CAL MODIFICAR PER IMPORTAR UN DATASET JA NETEJAT.
 ##Implementacions futures --> Posar un input per demanar quin CSV importar.
 
@@ -16,17 +10,24 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
-from nltk.stem import WordNetLemmatizer
+#from nltk.stem import WordNetLemmatizer
 import nltk
-
+"""
 nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
-
+"""
 # Funció per carregar i preprocessar les dades
 def carregar_dades():
-    print("Carregant el dataset...")
-    file_path = 'netejat.csv'
-    data = pd.read_csv(file_path, encoding='latin-1')
+    print("Introdueix el nom del fitxer CSV que vols utilitzar (amb extensió '.csv'):")
+    file_path = input("Nom del fitxer: ")
+    
+    try:
+        print("Carregant el dataset...")
+        data = pd.read_csv(file_path, encoding='latin-1')
+        print("Dataset carregat correctament!")
+    except FileNotFoundError:
+        print(f"Error: El fitxer '{file_path}' no s'ha trobat. Torna-ho a intentar.")
+        return carregar_dades()
     """
     print("Netejant el text...")
     def clean_text(text):

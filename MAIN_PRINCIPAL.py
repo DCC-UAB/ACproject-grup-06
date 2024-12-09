@@ -28,22 +28,6 @@ def carregar_dades():
     except FileNotFoundError:
         print(f"Error: El fitxer '{file_path}' no s'ha trobat. Torna-ho a intentar.")
         return carregar_dades()
-    """
-    print("Netejant el text...")
-    def clean_text(text):
-        text = re.sub(r'http\S+|www.\S+', '', text)  # Eliminar enllaços
-        text = re.sub(r'@\w+', '', text)  # Eliminar mencions
-        text = re.sub(r'#', '', text)  # Eliminar #
-        text = re.sub(r'[^\w\s]', '', text)  # Eliminar puntuació
-        text = re.sub(r'\d+', '', text)  # Eliminar números
-        text = text.lower()  # Minúscules
-        text = ' '.join([lemmatizer.lemmatize(word) for word in text.split()])
-        return text
-
-    data['text'] = data['text'].apply(clean_text)
-    """
-    #El Dataset ja està netejat, però no he esborrat aquesta funció per si de cas
-    #evidentmnet no cal tornar a netejar el Dataset
     print("Dividint les dades...")
     X = data['Text']
     y = data['Target']

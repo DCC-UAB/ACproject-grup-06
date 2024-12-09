@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.naive_bayes import MultinomialNB
 import nltk
 
 # Descarregar recursos necessaris
@@ -42,6 +43,7 @@ def train_and_evaluate(X_train, X_val, y_train, y_val):
 
     # Entrenar i avaluar amb Regressió Logística
     model = LogisticRegression(solver='lbfgs', max_iter=500, class_weight='balanced')
+    #model = MultinomialNB()
     model.fit(X_train_tfidf, y_train)
     y_pred = model.predict(X_val_tfidf)
 

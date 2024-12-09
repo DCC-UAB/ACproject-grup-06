@@ -11,10 +11,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
 #from nltk.stem import WordNetLemmatizer
+#from nltk.stem import WordNetLemmatizer
 import nltk
+"""
 """
 nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
+"""
 """
 # Funció per carregar i preprocessar les dades
 def carregar_dades():

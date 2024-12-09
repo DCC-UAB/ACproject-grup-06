@@ -66,3 +66,4 @@ Fitxer html on es mostren les caracteristiques del Dataset
 
 Generar_informe_estadistiques.py: 
 Fitxer .py per a generar l'informe HTML del Dataset
+

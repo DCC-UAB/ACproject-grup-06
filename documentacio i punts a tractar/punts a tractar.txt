@@ -1,0 +1,22 @@
+Setmana 1:
+Provar apart del lema, stemming.
+Eliminar stopwords.
+Visualitzar gràfiques provant amb els diferents paràmetres.
+Revisar dataset balancejat? com es el dataset? Llargada mitjana dels missatges?(desviació típica) documentació 
+Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. Codi python.
+80%train 20%test -> fer validació
+
+Idees: 
+Crear un fitxer de python que generi un altre dataset, on apliquem el "lematizer" o el "Stem", i traiem qualsevol funcio de clean text dels arxius .py i els models
+Reunió 02/12/2024:
+Hem vist que en les comparacions de lema i stem es millor escollir el que tingui millor exactitud, ja que el procés aquest només el farem un cop i el temps passa a ser secundari. 
+-Crear dataset amb millor exactitud (lema, stem).
+-Comparar cada dataset amb cada model i obtenir exactitud i temps d'execució.
+-Dataset alfanumeric, stem, stem+stopwords.
+-Gràfica y=exactitud, x=num files
+
+Setmana 2:
+-Gràfica y=exactitud, x=num files-> experiment, fer-ho amb diferents número de dades i també mirar quines son les dades amb més importància i mirar si amb menys dades de train obtenim la mateixa exactitud
+-Canviar funció Neteja_dataset.py (eliminar URLS)  Gràfiques per cada dataset
+-Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. Codi python.
+-Combinació de parametres (searchgrid)

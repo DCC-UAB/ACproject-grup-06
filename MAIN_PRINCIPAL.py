@@ -2,21 +2,14 @@
 ##Implementacions futures --> Posar un input per demanar quin CSV importar.
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
-from nltk.stem import WordNetLemmatizer
-import nltk
-"""
-"""
-nltk.download('wordnet')
-lemmatizer = WordNetLemmatizer()
-"""
-"""
+
 # Funció per carregar i preprocessar les dades
 def carregar_dades():
     print("Introdueix el nom del fitxer CSV que vols utilitzar (amb extensió '.csv'):")
@@ -29,6 +22,7 @@ def carregar_dades():
     except FileNotFoundError:
         print(f"Error: El fitxer '{file_path}' no s'ha trobat. Torna-ho a intentar.")
         return carregar_dades()
+    
     print("Dividint les dades...")
     X = data['Text']
     y = data['Target']
@@ -48,10 +42,22 @@ def vectoritzar_dades(X_train, X_val):
     X_val_tfidf = tfidf.transform(X_val)
     return X_train_tfidf, X_val_tfidf
 
-# Funció per executar un model
+# Funció per executar Grid Search
+def executar_grid_search(model, param_grid, X_train_tfidf, y_train):
+    print(f"Executant Grid Search per {model._class.name_}...")
+    print("Hiperparàmetres que s'optimitzaran:")
+    for param, values in param_grid.items():
+        print(f" - {param}: {values}")
+    
+    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=3, scoring='accuracy', verbose=1)
+    grid_search.fit(X_train_tfidf, y_train)
+    print(f"Millors hiperparàmetres per {model._class.name}: {grid_search.best_params}")
+    print(f"Millor exactitud: {grid_search.best_score_ * 100:.2f}%")
+    return grid_search.best_estimator_
 
+# Funció per entrenar i avaluar un model directament
 def executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val):
-    print(f"Entrenant el model {model.__class__.__name__}...")
+    print(f"Entrenant el model {model._class.name_}...")
     model.fit(X_train_tfidf, y_train)
     print("Predint...")
     y_pred = model.predict(X_val_tfidf)
@@ -64,7 +70,6 @@ def executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val):
     print(report)
 
 # Funció principal
-
 def main():
     print("Carregant dades i preprocessant...")
     X_train, X_val, y_train, y_val = carregar_dades()
@@ -80,24 +85,54 @@ def main():
 
         opcio = input("Introdueix el número de la teva opció: ")
 
-        if opcio == '1':
-            model = LogisticRegression(solver='lbfgs', max_iter=500, class_weight='balanced')
-            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
-        elif opcio == '2':
-            model = MultinomialNB()
-            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
-        elif opcio == '3':
-            model = RandomForestClassifier(n_estimators=200, random_state=42, class_weight='balanced')
-            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
-        elif opcio == '4':
-            model = SVC(kernel='linear', probability=True, random_state=42)
-            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
-        elif opcio == '5':
+        if opcio == '5':
             print("Sortint del programa. Adéu!")
             break
+
+        print("Vols fer servir Grid Search per optimitzar els hiperparàmetres? (s/n)")
+        fer_grid_search = input().lower()
+
+        if opcio == '1':
+            model = LogisticRegression(solver='lbfgs', max_iter=500, class_weight='balanced')
+            param_grid = {
+                'C': [0.01, 0.1, 1, 10],
+                'solver': ['lbfgs', 'liblinear']
+            }
+            if fer_grid_search == 's':
+                model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
+            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
+
+        elif opcio == '2':
+            model = MultinomialNB()
+            param_grid = {
+                'alpha': [0.01, 0.1, 1, 10]
+            }
+            if fer_grid_search == 's':
+                model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
+            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
+
+        elif opcio == '3':
+            model = RandomForestClassifier(random_state=42, class_weight='balanced')
+            param_grid = {
+                'n_estimators': [50, 100, 200],
+                'max_depth': [10, 20, None]
+            }
+            if fer_grid_search == 's':
+                model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
+            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
+
+        elif opcio == '4':
+            model = SVC(probability=True, random_state=42)
+            param_grid = {
+                'C': [0.01, 0.1, 1, 10],
+                'kernel': ['linear', 'rbf']
+            }
+            if fer_grid_search == 's':
+                model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
+            executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
+
         else:
             print("Opció no vàlida. Torna-ho a intentar.")
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
-

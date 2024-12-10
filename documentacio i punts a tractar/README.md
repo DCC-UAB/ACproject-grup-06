@@ -8,24 +8,15 @@ Training.1600000.processed.noemoticon.csv:
 Dataset original amb totes les dades originals.
 
 
-Netejat.csv: 
-Dataset amb només les columnes de ranking i de tweet. En la columna de tweet s’ha fet un filtre per a que només hi hagi valors alfanumèrics.
-
+Netejat_1.csv: (2 i 3)
+els 3 datasets on cada vegada tenim una neteja afegida.
 
 Punts a tractar.txt: 
 Fitxer .txt per a fer un seguiment de les tasques a fer. 
 
 
-Neteja_dataset.py: 
-Fitxer python per a netejar el dataset i crear el csv netejat
-
-
-Naives_bayes.py: 
-Fitxer python per a executar el model de Naive_Bayes
-
-
-Logistic_regression_2.py: 
-Fitxer python per a executar el model de Logistic regression
+Neteja_dataset_1.py: 
+Fitxer python per a netejar els datasets i crear el nou dataset
 
 
 Estadistiques.py: 
@@ -36,34 +27,19 @@ Imates.png:
 Imatges sobre les metriques i caracteristiques del Dataset
 
 
-ComparacioLemadiversosStemLRDatsetOG.py:
-Fitxer python on comparem el lemmatizer i diversos tipus de stemming amb regressió amb el data set original
-
-
-ComparacioLemadiversosStemdiversestecniquesNetajat.py:
-Fitxer python on comparem el lemmatizer i diversos tipus de stemming amb regressió amb el data set netejat
-
-
-ComparacioLemaPorterStemLRDatasetNet.py:
-Fitxer python on comparem el lemmatizer i stemming amb regressió amb el dataset netejat
-
-
-ComparacioLemaPorterStemLRDatasetOG.py:
-Fitxer python on comparem el lemmatizer i stemming amb regressió amb el dataset original
-
-
-ComparacioLemaDiversosStemNB.py:
-Fitxer python on comparem amb el dataset net diversos tecniques de stemming i lemmatizer amb NaiveBayes
-
-
-proves lema i stemming.docx:
-Documentació de les proves realitzades entre lema i stemming
-
-
 Informe_Dataset.html:
 Fitxer html on es mostren les caracteristiques del Dataset
 
 
 Generar_informe_estadistiques.py: 
 Fitxer .py per a generar l'informe HTML del Dataset
+
+ComparacioLemaStemLR.py:
+Fitxer per saber quina tècnica es millor
+
+MAIN_PRINCIPAL.py:
+Fitxer python per executar els 4 models inclosos
+
+TAULA_RESULTATS.py:
+Fitxer per crear la taula de resultats amb grid search
 

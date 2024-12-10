@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import accuracy_score
 
 # Funció per carregar i preprocessar les dades
 def carregar_dades(file_path):
@@ -15,7 +15,7 @@ def carregar_dades(file_path):
         print("Dataset carregat correctament!")
     except FileNotFoundError:
         print(f"Error: El fitxer '{file_path}' no s'ha trobat. Torna-ho a intentar.")
-        return None, None, None, None
+        return None
     
     print("Dividint les dades...")
     X = data['Text']
@@ -45,9 +45,8 @@ def executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val):
 
     print("Avaluant el model...")
     accuracy = accuracy_score(y_val, y_pred)
-    report = classification_report(y_val, y_pred, output_dict=True)
     print(f"Exactitud del model: {accuracy * 100:.2f}%")
-    return accuracy, report['weighted avg']['f1-score']
+    return accuracy
 
 # Funció per executar Grid Search
 def executar_grid_search(model, param_grid, X_train_tfidf, y_train):
@@ -88,7 +87,7 @@ def main():
         }
     }
 
-    results = []
+    results = {}
 
     for dataset in datasets:
         X_train, X_val, y_train, y_val = carregar_dades(dataset)
@@ -99,16 +98,19 @@ def main():
             print(f"Optimitzant hiperparàmetres per {model_name} amb Grid Search...")
             model = executar_grid_search(model, param_grids[model_name], X_train_tfidf, y_train)
 
-            accuracy, f1_score = executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
-            results.append({'Dataset': dataset, 'Model': model_name, 'Accuracy': accuracy, 'F1-Score': f1_score})
+            accuracy = executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
+            
+            if model_name not in results:
+                results[model_name] = {}
+            results[model_name][dataset] = accuracy
 
-    # Crear una taula amb els resultats
-    results_df = pd.DataFrame(results)
+    # Crear un DataFrame amb els resultats
+    results_df = pd.DataFrame(results).T  # Transposar perquè models siguin files i datasets columnes
     print("\nResultats finals:")
     print(results_df)
 
     # Guardar els resultats en un fitxer CSV
-    results_df.to_csv('resultats_models.csv', index=False)
+    results_df.to_csv('resultats_models.csv', index=True)
 
 if __name__ == "__main__":
     main()

@@ -32,14 +32,14 @@ def carregar_dades():
 def vectoritzar_dades(X_train, X_val):
     print("Vectoritzant amb TF-IDF...")
     tfidf = TfidfVectorizer(
-        max_features=100000,
-        ngram_range=(1, 4),
-        min_df=8,
-        max_df=0.8,
-        sublinear_tf=True
+        max_features=100000, #Limitem el nombre de termes a tenir en compte
+        ngram_range=(1, 4), #Considerem grups de paraules, desde 1 a 4 paraules
+        min_df=8, #Minims documents per tenir en compte una paraula
+        max_df=0.8, #Màxim percentatge de documents en el que pot sortir una paraula
+        sublinear_tf=True #Aplica un escalat logaritmic, termes molt repetits tenen menys pes
     )
-    X_train_tfidf = tfidf.fit_transform(X_train)
-    X_val_tfidf = tfidf.transform(X_val)
+    X_train_tfidf = tfidf.fit_transform(X_train) #transformem conjunt entrenament
+    X_val_tfidf = tfidf.transform(X_val)  #transformem conjunt test
     return X_train_tfidf, X_val_tfidf
 
 # Funció per executar Grid Search
@@ -49,7 +49,12 @@ def executar_grid_search(model, param_grid, X_train_tfidf, y_train):
     for param, values in param_grid.items():
         print(f" - {param}: {values}")
     
-    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=3, scoring='accuracy', verbose=1)
+
+    grid_search = GridSearchCV(estimator=model, #Indiquem el model
+                               param_grid=param_grid, #Indiquem el diccionari de hiperparàmetres
+                               cv=3, #Cross-validation amb 3 particions
+                               scoring='accuracy', #optimitzem per a accuracy
+                               verbose=1) #Ens mostra info detallada
     grid_search.fit(X_train_tfidf, y_train)
     print(f"Millors hiperparàmetres per {model._class.name}: {grid_search.best_params}")
     print(f"Millor exactitud: {grid_search.best_score_ * 100:.2f}%")
@@ -58,13 +63,13 @@ def executar_grid_search(model, param_grid, X_train_tfidf, y_train):
 # Funció per entrenar i avaluar un model directament
 def executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val):
     print(f"Entrenant el model {model._class.name_}...")
-    model.fit(X_train_tfidf, y_train)
+    model.fit(X_train_tfidf, y_train) #Utilitzem les dades vectoritzades
     print("Predint...")
-    y_pred = model.predict(X_val_tfidf)
+    y_pred = model.predict(X_val_tfidf) #Fa la prediccio
 
     print("Avaluant el model...")
-    accuracy = accuracy_score(y_val, y_pred)
-    report = classification_report(y_val, y_pred)
+    accuracy = accuracy_score(y_val, y_pred) #obteim mètriques
+    report = classification_report(y_val, y_pred) #obtenim mètriques
     print(f"Exactitud del model: {accuracy * 100:.2f}%")
     print("Informe de classificació:")
     print(report)
@@ -93,10 +98,12 @@ def main():
         fer_grid_search = input().lower()
 
         if opcio == '1':
-            model = LogisticRegression(solver='lbfgs', max_iter=500, class_weight='balanced')
+            model = LogisticRegression(solver='lbfgs', #Alorisme d'optimitzacio per trobar els pesos del model(adecuat per datasets grans)
+                                       max_iter=500, #Max d'itercions per assegurar convergencia
+                                       class_weight='balanced') #Ajusta pes de les classes segons distribucio
             param_grid = {
-                'C': [0.01, 0.1, 1, 10],
-                'solver': ['lbfgs', 'liblinear']
+                'C': [0.01, 0.1, 1, 10],#per evitar sobreajustamet. aplica una pealitzacio a caracteristiques massa específiques. Quant més gran, menys força a la regularització
+                'solver': ['lbfgs', 'liblinear'] #Libliear seria adecuat per a datasets petits
             }
             if fer_grid_search == 's':
                 model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
@@ -134,5 +141,5 @@ def main():
         else:
             print("Opció no vàlida. Torna-ho a intentar.")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

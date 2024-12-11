@@ -16,7 +16,11 @@ Hem vist que en les comparacions de lema i stem es millor escollir el que tingui
 -Gràfica y=exactitud, x=num files
 
 Setmana 2:
--Gràfica y=exactitud, x=num files-> experiment, fer-ho amb diferents número de dades i també mirar quines son les dades amb més importància i mirar si amb menys dades de train obtenim la mateixa exactitud
 -Canviar funció Neteja_dataset.py (eliminar URLS)  Gràfiques per cada dataset
 -Llista d’algorismes executen-se i fer gràfiques per valorar els algorismes. Codi python.
 -Combinació de parametres (searchgrid)
+
+Setmana 3:
+-Fer stemmer (només un tipus) també a part de lemma
+-Gràfica y=exactitud, x=num files-> experiment, fer-ho amb diferents número de dades i també mirar quines son les dades amb més importància i mirar si amb menys dades de train obtenim la mateixa exactitud
+-Aplicar en el random forest menys arbres (Taula Resultats)

@@ -25,15 +25,15 @@ def carregar_dades(file_path):
 # Funció per vectoritzar les dades
 def vectoritzar_dades(X_train, X_val):
     print("Vectoritzant amb TF-IDF...")
-    tfidf = TfidfVectorizer(
-        max_features=100000,
-        ngram_range=(1, 4),
-        min_df=8,
-        max_df=0.8,
-        sublinear_tf=True
+    tfidf = TfidfVectorizer(  # Configura el vectoritzador.
+        max_features=100000,  # Limita el nombre màxim de característiques.
+        ngram_range=(1, 4),  # Utilitza un rang d'un a quatre grams. Grups de paraules
+        min_df=8,  # Exclou termes que apareixen en menys de 8 documents.
+        max_df=0.8,  # Exclou termes que apareixen en més del 80% dels documents.
+        sublinear_tf=True  # Aplica una transformació sublineal al TF.
     )
-    X_train_tfidf = tfidf.fit_transform(X_train)
-    X_val_tfidf = tfidf.transform(X_val)
+    X_train_tfidf = tfidf.fit_transform(X_train) # Ajusta i transforma les dades d'entrenament.
+    X_val_tfidf = tfidf.transform(X_val) # Transforma les dades de validació
     return X_train_tfidf, X_val_tfidf
 
 # Funció per entrenar i avaluar un model directament

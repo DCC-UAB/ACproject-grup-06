@@ -37,14 +37,14 @@ def vectoritzar_dades(X_train, X_val):
     return X_train_tfidf, X_val_tfidf
 
 # Funció per entrenar i avaluar un model directament
-def executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val):
-    print(f"Entrenant el model {model.__class__.__name__}...")
-    model.fit(X_train_tfidf, y_train)
-    print("Predint...")
-    y_pred = model.predict(X_val_tfidf)
+def executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val): 
+    print(f"Entrenant el model {model.__class__.__name__}...")  # Mostra el nom del model.
+    model.fit(X_train_tfidf, y_train)  # Entrena el model amb les dades d'entrenament.
+    print("Predint...")  
+    y_pred = model.predict(X_val_tfidf)  # Realitza prediccions.
 
     print("Avaluant el model...")
-    accuracy = accuracy_score(y_val, y_pred)
+    accuracy = accuracy_score(y_val, y_pred) # Calcula exactitud
     print(f"Exactitud del model: {accuracy * 100:.2f}%")
     return accuracy
 

@@ -112,7 +112,7 @@ def main():
         elif opcio == '2':
             model = MultinomialNB()
             param_grid = {
-                'alpha': [0.01, 0.1, 1, 10] 
+                'alpha': [0.01, 0.1, 1, 10] #Paràmetre de suavització de Laplace
             }
             if fer_grid_search == 's':
                 model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
@@ -132,7 +132,7 @@ def main():
             model = SVC(probability=True, random_state=42)
             param_grid = {
                 'C': [0.01, 0.1, 1, 10],
-                'kernel': ['linear', 'rbf']
+                'kernel': ['linear', 'rbf'] #Tipus d'algorismes utilitzats
             }
             if fer_grid_search == 's':
                 model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)

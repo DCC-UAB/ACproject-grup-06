@@ -112,7 +112,7 @@ def main():
         elif opcio == '2':
             model = MultinomialNB()
             param_grid = {
-                'alpha': [0.01, 0.1, 1, 10]
+                'alpha': [0.01, 0.1, 1, 10] 
             }
             if fer_grid_search == 's':
                 model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)
@@ -121,8 +121,8 @@ def main():
         elif opcio == '3':
             model = RandomForestClassifier(random_state=42, class_weight='balanced')
             param_grid = {
-                'n_estimators': [50, 100, 200],
-                'max_depth': [10, 20, None]
+                'n_estimators': [50, 100, 200], #Arbres màxims del bosc
+                'max_depth': [10, 20, None] #Profunditat màxima de l'arbre
             }
             if fer_grid_search == 's':
                 model = executar_grid_search(model, param_grid, X_train_tfidf, y_train)

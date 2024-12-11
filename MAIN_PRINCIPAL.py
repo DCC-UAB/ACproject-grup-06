@@ -110,7 +110,7 @@ def main():
             executar_model(model, X_train_tfidf, X_val_tfidf, y_train, y_val)
 
         elif opcio == '2':
-            model = MultinomialNB()
+            model = MultinomialNB() #Multinomial Naives Bayes
             param_grid = {
                 'alpha': [0.01, 0.1, 1, 10] #Paràmetre de suavització de Laplace
             }

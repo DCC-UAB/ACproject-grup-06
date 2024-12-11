@@ -53,8 +53,8 @@ def executar_grid_search(model, param_grid, X_train_tfidf, y_train):
     print(f"Executant Grid Search per {model.__class__.__name__}...")
     grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=3, scoring='accuracy', verbose=1)
     grid_search.fit(X_train_tfidf, y_train)
-    print(f"Millors hiperparàmetres per {model.__class__.__name__}: {grid_search.best_params_}")
-    print(f"Millor exactitud: {grid_search.best_score_ * 100:.2f}%")
+    print(f"Millors hiperparàmetres per {model.__class__.__name__}: {grid_search.best_params_}") #Mostra els millors paràmetres
+    print(f"Millor exactitud: {grid_search.best_score_ * 100:.2f}%") #Mostra la millor exactitud
     return grid_search.best_estimator_
 
 # Funció principal
@@ -69,21 +69,25 @@ def main():
 
     param_grids = {
         'LogisticRegression': {
-            'C': [0.01, 0.05, 0.1, 0.5, 1, 5, 10],
-            'solver': ['lbfgs', 'liblinear']
+            'C': [0.01, 0.05, 0.1, 0.5, 1, 5, 10], # Llista de valors per al paràmetre de regularització (més alt implica menys regularització)
+            'solver': ['lbfgs', 'liblinear'] # Diferents algorismes d'optimització per ajustar el model.
         },
-        'NaiveBayes': {
-            'alpha': [0.01, 0.05, 0.1, 0.5, 1, 5]
+        'NaiveBayes': { # Hiperparàmetres per al model Naive Bayes multinomial.
+            'alpha': [0.01, 0.05, 0.1, 0.5, 1, 5] # Llista de valors per al paràmetre de suavització de Laplace.
         },
-        'RandomForest': {
-            'n_estimators': [50, 100, 150, 200],
-            'max_depth': [5, 10, 15, 20],
-            'min_samples_split': [2, 5, 10],
-            'min_samples_leaf': [1, 2, 4]
+        'RandomForest': { 
+            'n_estimators': [50, 100, 150, 200], # Nombre d'arbres en el bosc.
+            'max_depth': [5, 10, 15, 20], # Profunditat màxima dels arbres.
+            'min_samples_split': [2, 5, 10], # Nombre mínim de mostres requerides per dividir un node intern.
+            'min_samples_leaf': [1, 2, 4] # Nombre mínim de mostres necessàries per a ser una fulla.
         },
         'SVM': {
-            'C': [0.01, 0.05, 0.1, 0.5, 1, 5],
-            'kernel': ['linear', 'rbf']
+            'C': [0.01, 0.05, 0.1, 0.5, 1, 5],# Paràmetre de regularització:
+                # - Valors més petits de 'C' imposen una regularització més forta,
+                #   permetent marges més amplis però amb més errors de classificació.
+                # - Valors més grans de 'C' redueixen la regularització,
+                #   ajustant-se més a les dades però corrent el risc de sobreajustar
+            'kernel': ['linear', 'rbf'] # Tipus de funció nucli per mapejar les dades a un espai de característiques
         }
     }
 

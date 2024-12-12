@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, SnowballStemmer
 import nltk
 
 # Funció per netejar el tweet (eliminar caràcters no desitjats com símbols)
@@ -30,7 +30,12 @@ def apply_lemmatizer(text):
     # Aplica lematització a cada paraula del text
     return ' '.join([lemmatizer.lemmatize(word) for word in text.split()])
 
-opcio = int(input("\nQuin CSV vols crear? 1, 2, 3: "))
+# Funció per aplicar SnowballStemmer
+def apply_stemming(text):
+    # Aplica stemming a cada paraula del text
+    return ' '.join([stemmer.stem(word) for word in text.split()])
+
+opcio = int(input("\nQuin CSV vols crear? 1, 2, 3, 4: "))
 
 if opcio == 1:
     #Carregar el dataset amb un encoding diferent (latin1)
@@ -73,6 +78,20 @@ if opcio == 3:
     df = df[df['Text'].str.strip() != '']
     # Guardar el nou dataset netejat
     df.to_csv('Datasets/netejat_3.csv', index=False)
+
+if opcio == 4:
+    # Descarregar recursos necessaris de NLTK
+    nltk.download('punkt')
+    # Inicialitzar el SnowballStemmer
+    stemmer = SnowballStemmer("english")
+    # Carregar el dataset netejat
+    df = pd.read_csv('Datasets/netejat_2.csv')
+    # Aplicar la funció de stemming a la columna 'Text'
+    df['Text'] = df['Text'].apply(apply_stemming)
+    # Eliminar files on el text estigui buit després de l'stemming
+    df = df[df['Text'].str.strip() != '']
+    # Guardar el nou dataset netejat
+    df.to_csv('Datasets/netejat_4.csv', index=False)
 
 # Mostra les primeres files per comprovar
 print(df.head())
